@@ -1,0 +1,19 @@
+{
+  "name": "insurance-translator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bore": "^2.0.1",
+    "localtunnel": "^2.0.2",
+    "pdf-parse": "^2.4.5"
+  }
+}
