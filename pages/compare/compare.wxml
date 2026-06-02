@@ -1,0 +1,87 @@
+<view class="container">
+  <view class="header">
+    <view class="header-title">📋 保单说明</view>
+    <view class="header-sub">上传保单，保险专家用大白话讲给你听 · 随便问</view>
+  </view>
+
+  <!-- 导航 -->
+  <view class="page-nav">
+    <view class="page-nav-btn" bindtap="goTranslate">📋 翻译</view>
+    <view class="page-nav-btn page-nav-btn--on">📋 保单说明</view>
+    <view class="page-nav-btn" bindtap="goQuote">💰 报价</view>
+  </view>
+
+  <!-- ====== 未开始：输入保单 ====== -->
+  <block wx:if="{{!chatStarted}}">
+    <view class="card">
+      <view class="card-title">📄 上传你的保单</view>
+
+      <!-- 输入方式 -->
+      <view class="input-tabs">
+        <view class="tab {{inputMode==='text'?'tab--on':''}}" bindtap="setInputMode" data-mode="text">文字</view>
+        <view class="tab {{inputMode==='image'?'tab--on':''}}" bindtap="setInputMode" data-mode="image">📷拍照</view>
+        <view class="tab {{inputMode==='file'?'tab--on':''}}" bindtap="setInputMode" data-mode="file">📁文件</view>
+      </view>
+
+      <block wx:if="{{inputMode==='text'}}">
+        <textarea class="text-input" value="{{policyText}}" bindinput="onPolicyInput"
+          placeholder="粘贴保单条款到这里..." auto-height maxlength="8000" />
+      </block>
+      <block wx:if="{{inputMode==='image'}}">
+        <view class="upload-box" bindtap="onChooseImage">
+          <image wx:if="{{imagePath}}" class="preview-img" src="{{imagePath}}" mode="widthFix" />
+          <text wx:else class="upload-text">📸 点击拍摄保单</text>
+        </view>
+      </block>
+      <block wx:if="{{inputMode==='file'}}">
+        <view class="upload-box" bindtap="onChooseFile">
+          <text wx:if="{{!fileContent}}" class="upload-text">📄 点击选择保单文件</text>
+          <text wx:else>{{fileName}} ({{fileContent.length}}字)</text>
+        </view>
+      </block>
+
+      <button class="main-btn" bindtap="onStartChat" disabled="{{!canStart}}">
+        🔍 开始解读
+      </button>
+    </view>
+  </block>
+
+  <!-- ====== 已开始：对话区 ====== -->
+  <block wx:if="{{chatStarted}}">
+    <!-- 对话列表 -->
+    <view class="chat-list">
+      <block wx:for="{{messages}}" wx:key="index">
+        <!-- 用户消息 -->
+        <view class="chat-msg chat-user" wx:if="{{item.role==='user'}}">
+          <view class="chat-bubble chat-bubble--user">{{item.content}}</view>
+        </view>
+        <!-- 专家回复 -->
+        <view class="chat-msg chat-expert" wx:else>
+          <view class="chat-avatar">🧑‍💼</view>
+          <view class="chat-bubble chat-bubble--expert">{{item.content}}</view>
+        </view>
+      </block>
+
+      <!-- 加载 -->
+      <view class="chat-msg chat-expert" wx:if="{{isThinking}}">
+        <view class="chat-avatar">🧑‍💼</view>
+        <view class="chat-bubble chat-bubble--expert chat-bubble--loading">
+          <view class="spinner spinner--small"></view>
+          保险专家正在思考...
+        </view>
+      </view>
+    </view>
+
+    <!-- 输入框 -->
+    <view class="chat-input-bar">
+      <input class="chat-input" value="{{question}}" bindinput="onQuestionInput"
+        placeholder="有问题随便问..." confirm-type="send" bindconfirm="onAsk" />
+      <button class="chat-send" bindtap="onAsk" disabled="{{!question || isThinking}}">发送</button>
+    </view>
+  </block>
+
+  <!-- 空 -->
+  <view class="empty" wx:if="{{!chatStarted}}">
+    <text>💡 上传保单后，保险专家帮你解读。之后你可以随便提问</text>
+  </view>
+</view>
