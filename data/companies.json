@@ -1,0 +1,312 @@
+[
+  {
+    "name": "中国人寿",
+    "aliases": [
+      "国寿",
+      "中国人寿保险"
+    ],
+    "type": "large",
+    "established": 1949,
+    "assets": "超6万亿",
+    "solvency_ratio": "260%+",
+    "risk_capacity": "极强（央企、全球最大寿险公司之一）",
+    "claims_efficiency": "平均3-5个工作日，网点覆盖最广",
+    "claims_rate": "99%+",
+    "complaints_rank": "中等（体量大，投诉绝对量多但相对比率低）",
+    "network": "全国所有省市县，乡镇级服务点",
+    "features": [
+      "央企背景最稳",
+      "全国网点最多",
+      "理赔流程成熟",
+      "产品线最全"
+    ],
+    "weaknesses": [
+      "产品创新偏保守",
+      "部分产品定价偏贵",
+      "线上体验一般"
+    ]
+  },
+  {
+    "name": "中国平安",
+    "aliases": [
+      "平安",
+      "平安保险"
+    ],
+    "type": "large",
+    "established": 1988,
+    "assets": "超11万亿",
+    "solvency_ratio": "240%+",
+    "risk_capacity": "极强（综合金融集团、科技投入大）",
+    "claims_efficiency": "平均2-3个工作日，\"闪赔\"技术领先",
+    "claims_rate": "99%+",
+    "complaints_rank": "中等偏高（业务量大）",
+    "network": "全国所有省市，线上线下融合最好",
+    "features": [
+      "科技赋能理赔快",
+      "综合金融服务",
+      "产品创新能力强",
+      "APP体验好"
+    ],
+    "weaknesses": [
+      "保费偏贵",
+      "销售导向强",
+      "部分产品条款复杂"
+    ]
+  },
+  {
+    "name": "中国太保",
+    "aliases": [
+      "太保",
+      "太平洋保险",
+      "太平洋"
+    ],
+    "type": "large",
+    "established": 1991,
+    "assets": "超2万亿",
+    "solvency_ratio": "250%+",
+    "risk_capacity": "极强（上海国资背景）",
+    "claims_efficiency": "平均3-7个工作日",
+    "claims_rate": "98%+",
+    "complaints_rank": "中等",
+    "network": "全国主要省市",
+    "features": [
+      "经营稳健",
+      "产品性价比尚可",
+      "上海本地服务强"
+    ],
+    "weaknesses": [
+      "品牌影响力不如国寿和平安",
+      "线上化程度一般"
+    ]
+  },
+  {
+    "name": "泰康保险",
+    "aliases": [
+      "泰康",
+      "泰康人寿"
+    ],
+    "type": "large",
+    "established": 1996,
+    "assets": "超1.5万亿",
+    "solvency_ratio": "250%+",
+    "risk_capacity": "强（养老社区布局领先）",
+    "claims_efficiency": "平均3-5个工作日",
+    "claims_rate": "98%+",
+    "complaints_rank": "中等偏低",
+    "network": "全国主要省市",
+    "features": [
+      "养老社区\"泰康之家\"行业领先",
+      "医养结合",
+      "年金产品有特色"
+    ],
+    "weaknesses": [
+      "部分产品绑定养老社区",
+      "入门门槛高"
+    ]
+  },
+  {
+    "name": "新华保险",
+    "aliases": [
+      "新华",
+      "新华人寿"
+    ],
+    "type": "large",
+    "established": 1996,
+    "assets": "超1万亿",
+    "solvency_ratio": "240%+",
+    "risk_capacity": "强（A+H股上市）",
+    "claims_efficiency": "平均5-7个工作日",
+    "claims_rate": "97%+",
+    "complaints_rank": "中等",
+    "network": "全国主要省市",
+    "features": [
+      "产品线齐全",
+      "重疾险有一定口碑"
+    ],
+    "weaknesses": [
+      "近年增长放缓",
+      "代理人队伍缩减"
+    ]
+  },
+  {
+    "name": "众安保险",
+    "aliases": [
+      "众安",
+      "众安在线"
+    ],
+    "type": "internet",
+    "established": 2013,
+    "assets": "中等",
+    "solvency_ratio": "400%+",
+    "risk_capacity": "中等偏强（互联网保险龙头、蚂蚁/腾讯/平安合资）",
+    "claims_efficiency": "小额理赔秒级到账，线上化100%",
+    "claims_rate": "96%+",
+    "complaints_rank": "中等偏高（互联网模式投诉率天然偏高）",
+    "network": "纯线上，无线下网点",
+    "features": [
+      "百万医疗险开创者",
+      "纯线上体验流畅",
+      "产品创新快",
+      "保费有竞争力"
+    ],
+    "weaknesses": [
+      "无线下服务",
+      "续保稳定性待观察",
+      "体量远小于传统大公司"
+    ]
+  },
+  {
+    "name": "信泰人寿",
+    "aliases": [
+      "信泰",
+      "信泰保险"
+    ],
+    "type": "medium",
+    "established": 2007,
+    "assets": "超千亿",
+    "solvency_ratio": "160%+",
+    "risk_capacity": "中等（近年偿付能力偏紧，需关注）",
+    "claims_efficiency": "平均7-15个工作日",
+    "claims_rate": "95%+",
+    "complaints_rank": "偏高（重疾险纠纷较多）",
+    "network": "主要省市有分支机构",
+    "features": [
+      "重疾险性价比极高",
+      "产品创新大胆",
+      "保额高保费低"
+    ],
+    "weaknesses": [
+      "偿付能力偏低",
+      "理赔体验参差不齐",
+      "服务能力有限"
+    ]
+  },
+  {
+    "name": "百年人寿",
+    "aliases": [
+      "百年",
+      "百年保险"
+    ],
+    "type": "medium",
+    "established": 2009,
+    "assets": "中等",
+    "solvency_ratio": "130%+（偏低）",
+    "risk_capacity": "偏低（偿付能力低于行业平均、曾因治理问题被监管关注）",
+    "claims_efficiency": "平均7-15个工作日，个案差异大",
+    "claims_rate": "93%+",
+    "complaints_rank": "偏高",
+    "network": "部分省市",
+    "features": [
+      "产品定价激进（对消费者有利）",
+      "网销产品性价比高"
+    ],
+    "weaknesses": [
+      "偿付能力堪忧",
+      "公司治理曾有问题",
+      "理赔不确定性大",
+      "长期稳定性存疑"
+    ]
+  },
+  {
+    "name": "复星联合健康",
+    "aliases": [
+      "复星联合",
+      "复星"
+    ],
+    "type": "medium",
+    "established": 2017,
+    "assets": "中等",
+    "solvency_ratio": "150%+",
+    "risk_capacity": "中等偏下（新公司、规模有限）",
+    "claims_efficiency": "平均5-10个工作日",
+    "claims_rate": "94%+",
+    "complaints_rank": "中等偏低",
+    "network": "线上为主，部分城市有网点",
+    "features": [
+      "健康险专业",
+      "产品设计人性化",
+      "性价比高"
+    ],
+    "weaknesses": [
+      "公司成立时间短",
+      "体量小",
+      "长期理赔能力待验证"
+    ]
+  },
+  {
+    "name": "阳光保险",
+    "aliases": [
+      "阳光",
+      "阳光人寿"
+    ],
+    "type": "large",
+    "established": 2005,
+    "assets": "超5000亿",
+    "solvency_ratio": "220%+",
+    "risk_capacity": "强",
+    "claims_efficiency": "平均3-7个工作日",
+    "claims_rate": "97%+",
+    "complaints_rank": "中等偏低",
+    "network": "全国主要省市",
+    "features": [
+      "综合金融布局",
+      "产品线全",
+      "经营稳健"
+    ],
+    "weaknesses": [
+      "品牌影响力中等",
+      "差异化不明显"
+    ]
+  },
+  {
+    "name": "太平人寿",
+    "aliases": [
+      "太平",
+      "中国太平"
+    ],
+    "type": "large",
+    "established": 1929,
+    "assets": "超1万亿",
+    "solvency_ratio": "240%+",
+    "risk_capacity": "强（央企、历史最悠久的民族保险品牌）",
+    "claims_efficiency": "平均3-5个工作日",
+    "claims_rate": "98%+",
+    "complaints_rank": "中等偏低",
+    "network": "全国主要省市",
+    "features": [
+      "央企背景",
+      "历史悠久",
+      "跨境服务能力",
+      "经营稳健"
+    ],
+    "weaknesses": [
+      "产品创新力度一般",
+      "营销力度不如头部"
+    ]
+  },
+  {
+    "name": "国华人寿",
+    "aliases": [
+      "国华",
+      "国华保险"
+    ],
+    "type": "medium",
+    "established": 2007,
+    "assets": "超千亿",
+    "solvency_ratio": "160%+",
+    "risk_capacity": "中等",
+    "claims_efficiency": "平均5-10个工作日",
+    "claims_rate": "95%+",
+    "complaints_rank": "中等",
+    "network": "主要省市",
+    "features": [
+      "互联网保险活跃",
+      "产品创新",
+      "价格有竞争力"
+    ],
+    "weaknesses": [
+      "规模偏小",
+      "服务能力有限"
+    ]
+  }
+]
