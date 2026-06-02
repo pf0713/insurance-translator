@@ -1,0 +1,142 @@
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <text class="header-icon">🛡️</text>
+    <view class="header-title">保险条款翻译器</view>
+    <view class="header-sub">把天书条款变成大白话</view>
+  </view>
+
+  <!-- 页面导航 -->
+  <view class="page-nav">
+    <view class="page-nav-btn page-nav-btn--on">📋 翻译</view>
+    <view class="page-nav-btn" bindtap="goCompare">📋 保单说明</view>
+    <view class="page-nav-btn" bindtap="goQuote">💰 报价</view>
+  </view>
+
+  <!-- 输入区 -->
+  <view class="card">
+    <view class="card-title">📋 粘贴保险条款</view>
+    <textarea
+      class="text-input"
+      value="{{inputText}}"
+      bindinput="onInput"
+      placeholder="把保险合同里的条款粘贴到这里……&#10;&#10;支持：保险条款、健康告知、理赔通知等"
+      auto-height
+      maxlength="5000"
+      show-confirm-bar="{{false}}"
+    />
+    <view class="char-hint">{{inputText.length}}/5000</view>
+    <!-- 快捷操作 -->
+    <view class="quick-actions">
+      <view class="quick-btn" bindtap="onChooseImage">📷 拍照识别</view>
+      <view class="quick-btn" bindtap="onChooseFile">📁 上传文件</view>
+    </view>
+  </view>
+
+  <!-- 图片预览 -->
+  <view class="card" wx:if="{{imagePath}}">
+    <image class="preview-img" src="{{imagePath}}" mode="widthFix" />
+    <button class="main-btn" bindtap="onAnalyzeImage">🔍 分析图片</button>
+  </view>
+
+  <!-- 文件预览 -->
+  <view class="card" wx:if="{{fileContent}}">
+    <view class="file-preview">
+      <text class="file-name">📄 {{fileName}}</text>
+      <text class="file-size">{{fileContent.length}} 字符</text>
+    </view>
+    <button class="main-btn" bindtap="onAnalyzeFile">🔍 分析文件</button>
+  </view>
+
+  <!-- 示例按钮 -->
+  <view class="sample-row" wx:if="{{!imagePath && !fileContent}}">
+    <view class="sample-btn" bindtap="loadSample" data-index="0">重疾险</view>
+    <view class="sample-btn" bindtap="loadSample" data-index="1">医疗险</view>
+    <view class="sample-btn" bindtap="loadSample" data-index="2">意外险</view>
+    <view class="sample-btn" bindtap="loadSample" data-index="3">车险</view>
+  </view>
+
+  <!-- 翻译按钮 -->
+  <button class="main-btn {{inputText ? '' : 'main-btn--off'}}" bindtap="onTranslate"
+    disabled="{{!inputText}}" wx:if="{{!imagePath && !fileContent}}">
+    🔍 翻译成大白话
+  </button>
+
+  <!-- 加载 -->
+  <view class="loading-box" wx:if="{{isLoading}}">
+    <view class="spinner"></view>
+    <text>{{loadingText}}</text>
+  </view>
+
+  <!-- 结果区 -->
+  <block wx:if="{{hasResult && !isLoading}}">
+
+    <!-- 词典结果 -->
+    <block wx:if="{{resultType==='dict' || resultType==='text'}}">
+      <view class="score-card" wx:if="{{stats.termCount > 0}}">
+        <view class="score-item">
+          <view class="score-num">{{stats.termCount}}</view>
+          <view class="score-label">个专业术语</view>
+        </view>
+        <view class="score-item">
+          <view class="score-badge score-badge--before">{{stats.beforeLevel}}</view>
+          <view class="score-label">翻译前</view>
+        </view>
+        <text class="score-arrow">→</text>
+        <view class="score-item">
+          <view class="score-badge score-badge--after">{{stats.afterLevel}}</view>
+          <view class="score-label">翻译后</view>
+        </view>
+      </view>
+
+      <view class="section-label" wx:if="{{changes.length > 0}}">📖 术语解读</view>
+      <view class="term-list">
+        <view class="term-card" wx:for="{{changes}}" wx:key="term">
+          <view class="term-word">{{item.term}}</view>
+          <view class="term-gap"></view>
+          <view class="term-desc">{{item.explanation}}</view>
+        </view>
+      </view>
+
+      <!-- 后台AI查找中的转圈 -->
+      <view class="ai-discovering" wx:if="{{isDiscovering}}">
+        <view class="spinner spinner--small"></view>
+      </view>
+
+      <view class="no-term" wx:if="{{changes.length === 0 && !isDiscovering}}">
+        <text>✅ 这段内容已经很通俗了</text>
+      </view>
+    </block>
+
+    <!-- 图片/文件分析结果 -->
+    <block wx:if="{{resultType==='image' || resultType==='file'}}">
+      <view class="card">
+        <view class="card-title">{{resultType==='image' ? '📷' : '📁'}} 分析结果</view>
+        <view class="ai-result">{{aiResult}}</view>
+      </view>
+    </block>
+
+    <!-- 还有不懂的词？ -->
+    <view class="ask-box">
+      <view class="ask-title">🤔 还有不懂的词？直接问保险专家</view>
+      <view class="ask-row">
+        <input class="ask-input" placeholder="输入词汇..." value="{{askTerm}}" bindinput="onAskInput" />
+        <button class="ask-btn" bindtap="onAskTerm" disabled="{{!askTerm}}">问</button>
+      </view>
+      <view class="ask-result" wx:if="{{askResult}}">
+        <view class="ask-result-tag {{askResult.isRisky ? 'tag-risk' : (askResult.category==='insurance'?'tag-ins':'tag-gen')}}">
+          {{askResult.isRisky ? '无法回答' : (askResult.category==='insurance' ? '保险术语' : '通用解释')}}
+        </view>
+        <text>{{askResult.explanation}}</text>
+        <text class="ask-db-note" wx:if="{{askResult.addedToDict && !askResult.isRisky}}">
+          {{askResult.category==='insurance' ? '✅ 已自动加入保险术语库' : '✅ 已自动加入通用词库'}}
+        </text>
+      </view>
+    </view>
+  </block>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{!hasResult && !isLoading}}">
+    <text>💡 粘贴保险条款，点翻译。未知术语保险专家自动帮你查</text>
+  </view>
+</view>
