@@ -1,0 +1,74 @@
+<view class="container">
+  <view class="header">
+    <view class="header-title">💰 保险报价对比</view>
+    <view class="header-sub">支持车险、医疗险、重疾险、意外险等任意险种报价对比</view>
+  </view>
+
+  <!-- 导航 -->
+  <view class="page-nav">
+    <view class="page-nav-btn" bindtap="goTranslate">📋 翻译</view>
+    <view class="page-nav-btn" bindtap="goCompare">📋 保单说明</view>
+    <view class="page-nav-btn page-nav-btn--on">💰 报价</view>
+  </view>
+
+  <!-- 方案列表 -->
+  <view class="policy-card" wx:for="{{policies}}" wx:key="id">
+    <view class="policy-header">
+      <view class="policy-label">报价 {{item.label}}</view>
+      <view class="policy-del" bindtap="removePolicy" data-id="{{item.id}}" wx:if="{{policies.length > 2}}">🗑️</view>
+    </view>
+
+    <input class="cmp-company" value="{{item.company}}" bindinput="onCompanyInput" data-id="{{item.id}}"
+      placeholder="保险公司名称（如：人保、平安、太保）" />
+
+    <input class="cmp-company" value="{{item.premium}}" bindinput="onPremiumInput" data-id="{{item.id}}"
+      placeholder="报价金额（如：¥3,800）" type="text" style="margin-bottom:12rpx;" />
+
+    <view class="input-tabs">
+      <view class="tab {{item.mode==='text'?'tab--on':''}}" bindtap="switchMode" data-id="{{item.id}}" data-mode="text">文字</view>
+      <view class="tab {{item.mode==='image'?'tab--on':''}}" bindtap="switchMode" data-id="{{item.id}}" data-mode="image">📷拍照</view>
+      <view class="tab {{item.mode==='file'?'tab--on':''}}" bindtap="switchMode" data-id="{{item.id}}" data-mode="file">📁文件</view>
+    </view>
+
+    <block wx:if="{{item.mode==='text'}}">
+      <textarea class="cmp-input" value="{{item.text}}" bindinput="onTextInput" data-id="{{item.id}}"
+        placeholder="粘贴报价单详情……&#10;&#10;如：车险-三者200万+车损+不计免赔；医疗险-保额400万+免赔1万；重疾险-保额50万+30年交……" auto-height maxlength="5000" />
+    </block>
+    <block wx:if="{{item.mode==='image'}}">
+      <view class="cmp-upload" bindtap="onImage" data-id="{{item.id}}">
+        <image wx:if="{{item.imagePath}}" class="cmp-preview" src="{{item.imagePath}}" mode="widthFix" />
+        <text wx:else class="cmp-upload-text">📸 拍报价单</text>
+      </view>
+    </block>
+    <block wx:if="{{item.mode==='file'}}">
+      <view class="cmp-upload" bindtap="onFile" data-id="{{item.id}}">
+        <text wx:if="{{!item.fileContent}}" class="cmp-upload-text">📄 上传报价文件</text>
+        <text wx:else class="cmp-file-name">{{item.fileName}} ({{item.fileContent.length}}字)</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 添加 -->
+  <view class="add-btn" bindtap="addPolicy">+ 添加报价 {{policies.length + 1}}</view>
+
+  <!-- 对比按钮 -->
+  <button class="main-btn" bindtap="onCompare" disabled="{{!canCompare}}">
+    🔍 开始对比（{{policies.length}}家报价）
+  </button>
+
+  <!-- 加载 -->
+  <view class="loading-box" wx:if="{{isLoading}}">
+    <view class="spinner"></view>
+    <text>保险专家正在逐项对比分析...</text>
+  </view>
+
+  <!-- 结果 -->
+  <view class="result-box" wx:if="{{hasResult && !isLoading}}">
+    <view class="result-title">📋 专家对比建议</view>
+    <view class="result-content">{{compareResult}}</view>
+  </view>
+
+  <view class="empty" wx:if="{{!hasResult && !isLoading}}">
+    <text>💡 输入各家保险报价（至少2家），支持车险、医疗险、重疾险等任意险种</text>
+  </view>
+</view>
