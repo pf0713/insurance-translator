@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/compare/compare",
+    "pages/quote/quote"
+  ],
+  "window": {
+    "navigationBarTitleText": "保险条款翻译器",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f5f1"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
